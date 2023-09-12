@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">redcapcustodian</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.14.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/credential-scraping.html">Credential Scraping</a>
     <a class="dropdown-item" href="articles/custom_rscript.html">Custom Rscript</a>
+    <a class="dropdown-item" href="articles/delete-erroneous-survey-reminders.html">Deleting Erroneous Survey Reminders</a>
     <a class="dropdown-item" href="articles/developer_notes.html">Developer Notes for REDCap Custodian</a>
     <a class="dropdown-item" href="articles/expire_user_project_rights.html">expire_user_project_rights</a>
     <a class="dropdown-item" href="articles/friday-call-demo-setup.html">REDCap Custodian Friday Call Demo Credentials Setup</a>
@@ -76,12 +77,12 @@
 <div class="page-header"><h1 id="redcap-custodian">REDCap Custodian<a class="anchor" aria-label="anchor" href="#redcap-custodian"></a>
 </h1></div>
 <p><a href="https://doi.org/10.5281/zenodo.6828728" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6828728.svg" alt="DOI"></a></p>
-<p>This package simplifies data management activities on REDCap systems. It provides a framework for automating data extraction, transformation, and loading (ETL) work. It supports ETL work within a REDCap, between REDCap projects, between REDCap systems, and with the REDCap database. It provides an extensible set of R functions, a Docker image, and an Rstudio Project template upon which a REDCap team can build ETL tasks that serve their REDCap systems and customers.</p>
+<p>This package simplifies data management activities on REDCap systems. It provides a framework for automating data extraction, transformation, and loading (ETL) work. It supports ETL work within a REDCap, between REDCap projects, between REDCap systems, and with the REDCap database. It provides an extensible set of R functions, a Docker image, and an RStudio Project template upon which a REDCap team can build ETL tasks that serve their REDCap systems and customers.</p>
 <div class="section level2">
 <h2 id="operating-environment">Operating environment<a class="anchor" aria-label="anchor" href="#operating-environment"></a>
 </h2>
 <p><a href="https://ctsit.github.io/redcapcustodian/" class="external-link"><code>redcapcustodian</code></a> is an R package than can be referenced in any R script that needs to do ETL work against REDCap or most any data target. To facilitate automation, this repository also provides a Dockerfile that provides R, the <code>redcapcustodian</code> package, and its required packages. The <a href="https://github.com/ctsit/redcapcustodian/tree/master/Dockerfile" class="external-link"><code>Dockerfile</code></a> and <a href="https://github.com/ctsit/redcapcustodian/tree/master/build.sh" class="external-link"><code>build.sh</code></a> can be used to build a Docker image named <em>redcapcustodian</em> that can serve as the foundation for containers that serve your specific tasks.</p>
-<p>To build upon that foundation, this repository also provides a folder, <a href="https://github.com/ctsit/redcapcustodian/tree/master/study_template/" class="external-link"><code>study_template</code></a> that can be copied to a new folder and used as the starting point for an Rstudio project, R package, and Docker image that address the needs of a single study or data management project. All of these tools are designed to simplify development and reduce the burden of automating data reporting and recurring data management tasks.</p>
+<p>To build upon that foundation, this repository also provides a folder, <a href="https://github.com/ctsit/redcapcustodian/tree/master/study_template/" class="external-link"><code>study_template</code></a> that can be copied to a new folder and used as the starting point for an RStudio project, R package, and Docker image that address the needs of a single study or data management project. All of these tools are designed to simplify development and reduce the burden of automating data reporting and recurring data management tasks.</p>
 <p>In such an automated environment, each ETL job in this system is an Rscript run via Docker. Each report is an RMarkdown file again run via Docker. The design assumes the Docker containers are hosted on a Linux host with API access to one or more REDCap systems, a mail server, a MySQL database, and, optionally, the REDCap database itself.</p>
 <p>For sites without container infrastructure, each image can be instantiated into a container via a cron job as documented in the files in <a href="https://github.com/ctsit/redcapcustodian/tree/master/study_template/cron" class="external-link"><code>study_template/crons/</code></a>. Each file in that folder runs a single job. To run a job, its cron script must be copied to the <code>/etc/cron.d/</code> folder on the Linux host. The <a href="https://github.com/ctsit/redcapcustodian/tree/master/build.sh" class="external-link"><code>build.sh</code></a> script builds the redcapcustodian container upon which containers built by the study template would depend.</p>
 </div>
@@ -111,6 +112,9 @@
 <li>For tools and procedures for moving production projects that use randomization, See <a href="https://ctsit.github.io/redcapcustodian/articles/randomization-management.html" class="external-link">Randomization Management</a>
 </li>
 <li>For bulk rights expiration, see the function <a href="https://ctsit.github.io/redcapcustodian/reference/expire_user_project_rights.html" class="external-link"><code>expire_user_project_rights()</code></a>
+</li>
+<li>To get the history of projects on a REDCap system, see <a href="https://ctsit.github.io/redcapcustodian/reference/get_project_life_cycle.html" class="external-link"><code>get_project_life_cycle()</code></a>. It runs speedy queries against the REDCap log event tables to get all of the events in the life cycle of every project on the system.</li>
+<li>To delete survey reminders that persist after survey completion, see <a href="https://ctsit.github.io/redcapcustodian/articles/delete-erroneous-survey-reminders.html" class="external-link">Deleting Erroneous Survey Reminders</a>
 </li>
 </ul>
 </div>

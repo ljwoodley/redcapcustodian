@@ -4,10 +4,16 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/LICENSE-text.html</loc>
+  </url>
+  <url>
     <loc>/articles/credential-scraping.html</loc>
   </url>
   <url>
     <loc>/articles/custom_rscript.html</loc>
+  </url>
+  <url>
+    <loc>/articles/delete-erroneous-survey-reminders.html</loc>
   </url>
   <url>
     <loc>/articles/developer_notes.html</loc>
@@ -53,6 +59,9 @@
   </url>
   <url>
     <loc>/reference/convert_schema_to_sqlite.html</loc>
+  </url>
+  <url>
+    <loc>/reference/copy_entire_table_to_db.html</loc>
   </url>
   <url>
     <loc>/reference/create_allocation_rows.html</loc>
@@ -109,6 +118,9 @@
     <loc>/reference/get_package_scope_var.html</loc>
   </url>
   <url>
+    <loc>/reference/get_project_life_cycle.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_redcap_db_connection.html</loc>
   </url>
   <url>
@@ -148,6 +160,9 @@
     <loc>/reference/is_on_ci.html</loc>
   </url>
   <url>
+    <loc>/reference/log_event_tables.html</loc>
+  </url>
+  <url>
     <loc>/reference/log_job_debug.html</loc>
   </url>
   <url>
@@ -158,6 +173,18 @@
   </url>
   <url>
     <loc>/reference/mutate_columns_to_posixct.html</loc>
+  </url>
+  <url>
+    <loc>/reference/project_life_cycle_descriptions.html</loc>
+  </url>
+  <url>
+    <loc>/reference/project_purpose_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/project_purpose_other_research_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/project_status_labels.html</loc>
   </url>
   <url>
     <loc>/reference/quit_non_interactive_run.html</loc>
@@ -197,6 +224,9 @@
   </url>
   <url>
     <loc>/reference/sync_table_test_user_data_result.html</loc>
+  </url>
+  <url>
+    <loc>/reference/unnest_job_summary_data_json_object.html</loc>
   </url>
   <url>
     <loc>/reference/update_production_allocation_state.html</loc>
