@@ -8,8 +8,8 @@
 <meta name="description" content="redcapcustodian">
 <title>REDCap Custodian Friday Call Demo Credentials Setup • redcapcustodian</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="REDCap Custodian Friday Call Demo Credentials Setup">
 <meta property="og:description" content="redcapcustodian">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">redcapcustodian</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.14.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +48,7 @@
     <a class="dropdown-item" href="../articles/expire_user_project_rights.html">expire_user_project_rights</a>
     <a class="dropdown-item" href="../articles/friday-call-demo-setup.html">REDCap Custodian Friday Call Demo Credentials Setup</a>
     <a class="dropdown-item" href="../articles/friday-call-demo.html">REDCap Custodian Friday Call Demo</a>
+    <a class="dropdown-item" href="../articles/job_logging.html">Job Logging</a>
     <a class="dropdown-item" href="../articles/randomization-management.html">Randomization Management</a>
   </div>
 </li>
@@ -166,25 +167,27 @@ use REDCap Custodian.</p>
 credentials DB.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fetching all extant API tokens and adding them to storage #################</span></span>
-<span><span class="fu">load_dot_env</span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"local.env.txt"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/dotenv/man/load_dot_env.html" class="external-link">load_dot_env</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"local.env.txt"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">my_username</span> <span class="op">&lt;-</span> <span class="st">"admin"</span></span>
 <span><span class="va">source_conn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/connect_to_redcap_db.html">connect_to_redcap_db</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">scraped_credentials</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scrape_user_api_tokens.html">scrape_user_api_tokens</a></span><span class="op">(</span><span class="va">source_conn</span>, <span class="va">my_username</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># alter credentials to match local schema</span></span>
-<span><span class="va">source_credentials_upload</span> <span class="op">&lt;-</span> <span class="va">scraped_credentials</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span><span class="va">source_credentials_upload</span> <span class="op">&lt;-</span> <span class="va">scraped_credentials</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    redcap_uri <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"URI"</span><span class="op">)</span>,</span>
 <span>    server_short_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">tolower</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INSTANCE"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># remove duplicates</span></span>
-<span>  <span class="fu">anti_join</span><span class="op">(</span></span>
-<span>    <span class="fu">tbl</span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>      <span class="fu">collect</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="external-link">anti_join</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbAppendTable.html" class="external-link">dbAppendTable</a></span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span>, <span class="va">source_credentials_upload</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbAppendTable.html" class="external-link">dbAppendTable</a></span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span>, <span class="va">source_credentials_upload</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">source_conn</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="make-test-data-and-write-it-to-your-test-projects">Make test data and write it to your test projects<a class="anchor" aria-label="anchor" href="#make-test-data-and-write-it-to-your-test-projects"></a>
@@ -193,11 +196,14 @@ credentials DB.</p>
 over to the Biospecimen project. First, access the credential database
 to get your credentials to the REDCap project you want to read from.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">source_credentials</span> <span class="op">&lt;-</span> <span class="fu">tbl</span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">username</span> <span class="op">==</span> <span class="va">my_username</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">collect</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">project_display_name</span>, <span class="st">"Demo Main"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">unnest</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">source_credentials</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">file_conn</span>, <span class="st">"credentials"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">username</span> <span class="op">==</span> <span class="va">my_username</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">project_display_name</span>, <span class="st">"Demo Main"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Disconnect when your done with the database</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">file_conn</span><span class="op">)</span></span></code></pre></div>
 <p>We use Will Beasley’s REDCapR library to interact with REDCap via its
 API. REDCapR allows you to specify the forms, fields, event names, and
 time frames of interest. It even allows REDCap filtering.</p>
@@ -221,38 +227,38 @@ typically won’t be populating a project with random data.</p>
 <span><span class="co"># create empty dataframe and set column names</span></span>
 <span><span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">record_columns</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, <span class="va">as.character</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">as.character</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">simulated_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">record_columns</span></span>
 <span></span>
 <span><span class="co"># create base entries for each event</span></span>
 <span><span class="co"># NOTE: may be a bit slow as for-loops are not generally used in R</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">record_id</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">record_count_to_create</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">event_id</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">collection_events</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op">%&gt;%</span></span>
-<span>      <span class="fu">add_row</span><span class="op">(</span></span>
+<span>    <span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html" class="external-link">add_row</a></span><span class="op">(</span></span>
 <span>        record_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">record_id</span><span class="op">)</span>,</span>
 <span>        redcap_event_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"event_"</span>, <span class="va">event_id</span>, <span class="st">"_arm_1"</span><span class="op">)</span>,</span>
 <span>        tmp_event_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">event_id</span><span class="op">)</span>, <span class="co"># used to generate tube IDs later</span></span>
 <span>        sample_collected_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span></span>
 <span>          <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">ymd</a></span><span class="op">(</span><span class="st">"2020-03-01"</span><span class="op">)</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">ymd</a></span><span class="op">(</span><span class="st">"2022-06-01"</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"day"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">T</span></span>
-<span>        <span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>        <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># group to ensure simulated data is consistent with a single collection event</span></span>
-<span><span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">record_id</span>, <span class="va">redcap_event_name</span><span class="op">)</span></span>
+<span><span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">record_id</span>, <span class="va">redcap_event_name</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># simulate individual samples</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">tube</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">tubes_per_collection</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">mutate</span><span class="op">(</span></span>
+<span>  <span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>      <span class="st">"tube_id{tube}"</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
 <span>        <span class="va">record_id</span>, <span class="st">"-"</span>,</span>
-<span>        <span class="fu">str_pad</span><span class="op">(</span><span class="va">tmp_event_id</span>, width <span class="op">=</span> <span class="fl">2</span>, side <span class="op">=</span> <span class="st">"left"</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span>, <span class="st">"-"</span>,</span>
-<span>        <span class="fu">str_pad</span><span class="op">(</span><span class="va">tube</span>, width <span class="op">=</span> <span class="fl">2</span>, side <span class="op">=</span> <span class="st">"left"</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html" class="external-link">str_pad</a></span><span class="op">(</span><span class="va">tmp_event_id</span>, width <span class="op">=</span> <span class="fl">2</span>, side <span class="op">=</span> <span class="st">"left"</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span>, <span class="st">"-"</span>,</span>
+<span>        <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html" class="external-link">str_pad</a></span><span class="op">(</span><span class="va">tube</span>, width <span class="op">=</span> <span class="fl">2</span>, side <span class="op">=</span> <span class="st">"left"</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span>,</span>
 <span>      <span class="st">"tube_specimen_type{tube}"</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>      <span class="st">"tube_volume{tube}"</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -260,9 +266,9 @@ typically won’t be populating a project with random data.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># remove temporary column used in simulation</span></span>
-<span><span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">tmp_event_id</span><span class="op">)</span></span>
+<span><span class="va">simulated_data</span> <span class="op">&lt;-</span> <span class="va">simulated_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">tmp_event_id</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># upload data to REDCap</span></span>
 <span><span class="fu">REDCapR</span><span class="fu">::</span><span class="fu"><a href="https://ouhscbbmc.github.io/REDCapR/reference/redcap_write.html" class="external-link">redcap_write</a></span><span class="op">(</span></span>
